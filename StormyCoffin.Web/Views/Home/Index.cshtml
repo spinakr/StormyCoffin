@@ -1,0 +1,16 @@
+﻿@using System.Reflection
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stormy Coffin</title>
+</head>
+<body>
+    <div id="stormycoffin-app"></div>
+
+    @{
+        var cacheBustingVersion = Assembly.GetAssembly(typeof(Global)).GetName().Version;
+    }
+    <script src="@Url.Content("~/app/dist/app-bundle.js?v=" + cacheBustingVersion)"></script>
+
+</body>
+</html>
