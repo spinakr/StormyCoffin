@@ -1,6 +1,5 @@
 const initialState = {
-  items: [],
-  newItem: { name: '' },
+  signalLights: [{}, {}, {}, {}],
 };
 
 export default (state = initialState, action) => {

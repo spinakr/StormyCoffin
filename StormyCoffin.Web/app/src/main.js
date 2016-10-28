@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import AppContainer from './components/AppContainer';
-import reducer from './reducers/index';
+import lightsReducer from './reducers/lightsReducer';
 
-const store = createStore(reducer);
+const store = createStore(lightsReducer);
 
 class StormyCoffin extends Component {
   render() {

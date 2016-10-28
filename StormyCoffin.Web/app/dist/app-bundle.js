@@ -9368,9 +9368,9 @@
 	
 	var _AppContainer2 = _interopRequireDefault(_AppContainer);
 	
-	var _index = __webpack_require__(500);
+	var _lightsReducer = __webpack_require__(506);
 	
-	var _index2 = _interopRequireDefault(_index);
+	var _lightsReducer2 = _interopRequireDefault(_lightsReducer);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -9381,7 +9381,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Native fetch polyfill
 	
 	
-	var store = (0, _redux.createStore)(_index2.default);
+	var store = (0, _redux.createStore)(_lightsReducer2.default);
 	
 	var StormyCoffin = function (_Component) {
 	  _inherits(StormyCoffin, _Component);
@@ -32694,13 +32694,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _InventoryListContainer = __webpack_require__(498);
+	var _MemitContainer = __webpack_require__(507);
 	
-	var _InventoryListContainer2 = _interopRequireDefault(_InventoryListContainer);
-	
-	var _NewItemContainer = __webpack_require__(501);
-	
-	var _NewItemContainer2 = _interopRequireDefault(_NewItemContainer);
+	var _MemitContainer2 = _interopRequireDefault(_MemitContainer);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -32730,8 +32726,7 @@
 	          null,
 	          'Stormy Coffin'
 	        ),
-	        _react2.default.createElement(_NewItemContainer2.default, null),
-	        _react2.default.createElement(_InventoryListContainer2.default, null)
+	        _react2.default.createElement(_MemitContainer2.default, null)
 	      );
 	    }
 	  }]);
@@ -32744,148 +32739,15 @@
 	exports.default = App;
 
 /***/ },
-/* 498 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(302);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(487);
-	
-	var _InventoryList = __webpack_require__(499);
-	
-	var _InventoryList2 = _interopRequireDefault(_InventoryList);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var InventoryListContainer = function (_Component) {
-	  _inherits(InventoryListContainer, _Component);
-	
-	  function InventoryListContainer() {
-	    _classCallCheck(this, InventoryListContainer);
-	
-	    return _possibleConstructorReturn(this, (InventoryListContainer.__proto__ || Object.getPrototypeOf(InventoryListContainer)).apply(this, arguments));
-	  }
-	
-	  _createClass(InventoryListContainer, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(_InventoryList2.default, { items: this.props.items });
-	    }
-	  }]);
-	
-	  return InventoryListContainer;
-	}(_react.Component);
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    items: state.items
-	  };
-	};
-	
-	InventoryListContainer.propTypes = {
-	  items: _react.PropTypes.array
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(InventoryListContainer);
-
-/***/ },
-/* 499 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(302);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var InventoryList = function (_Component) {
-	  _inherits(InventoryList, _Component);
-	
-	  function InventoryList() {
-	    _classCallCheck(this, InventoryList);
-	
-	    return _possibleConstructorReturn(this, (InventoryList.__proto__ || Object.getPrototypeOf(InventoryList)).apply(this, arguments));
-	  }
-	
-	  _createClass(InventoryList, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'ul',
-	          null,
-	          this.props.items.map(function (item, index) {
-	            return _react2.default.createElement(
-	              'li',
-	              { key: index },
-	              ' ',
-	              item.name,
-	              ' '
-	            );
-	          }),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            'First item'
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            'Second item'
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            'Third item'
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return InventoryList;
-	}(_react.Component);
-	
-	InventoryList.propTypes = {
-	  items: _react.PropTypes.array
-	};
-	
-	exports.default = InventoryList;
-
-/***/ },
-/* 500 */
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */,
+/* 505 */,
+/* 506 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -32897,8 +32759,7 @@
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
 	var initialState = {
-	  items: [],
-	  newItem: { name: '' }
+	  signalLights: [{}, {}, {}, {}]
 	};
 	
 	exports.default = function () {
@@ -32926,7 +32787,7 @@
 	};
 
 /***/ },
-/* 501 */
+/* 507 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32943,9 +32804,9 @@
 	
 	var _reactRedux = __webpack_require__(487);
 	
-	var _NewItemComponent = __webpack_require__(502);
+	var _LightGroupComponent = __webpack_require__(508);
 	
-	var _NewItemComponent2 = _interopRequireDefault(_NewItemComponent);
+	var _LightGroupComponent2 = _interopRequireDefault(_LightGroupComponent);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -32955,67 +32816,42 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var NewItemContainer = function (_Component) {
-	  _inherits(NewItemContainer, _Component);
+	var MemitContainer = function (_Component) {
+	  _inherits(MemitContainer, _Component);
 	
-	  function NewItemContainer() {
-	    _classCallCheck(this, NewItemContainer);
+	  function MemitContainer() {
+	    _classCallCheck(this, MemitContainer);
 	
-	    return _possibleConstructorReturn(this, (NewItemContainer.__proto__ || Object.getPrototypeOf(NewItemContainer)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (MemitContainer.__proto__ || Object.getPrototypeOf(MemitContainer)).apply(this, arguments));
 	  }
 	
-	  _createClass(NewItemContainer, [{
-	    key: 'handleNewItemAdded',
-	    value: function handleNewItemAdded() {
-	      this.props.dispatch({
-	        type: 'NEW_ITEM_ADDED',
-	        payload: {
-	          newItem: this.props.newItem
-	        }
-	      });
-	    }
-	  }, {
-	    key: 'handleItemInputChanged',
-	    value: function handleItemInputChanged(name) {
-	      this.props.dispatch({
-	        type: 'ITEM_INPUT_NAME_CHANGED',
-	        payload: {
-	          name: name
-	        }
-	      });
-	    }
-	  }, {
+	  _createClass(MemitContainer, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_NewItemComponent2.default, {
-	        handleNewItemAdded: this.handleNewItemAdded.bind(this),
-	        handleItemInputChanged: this.handleItemInputChanged.bind(this),
-	        newItem: this.props.newItem
-	      });
+	      return _react2.default.createElement(_LightGroupComponent2.default, { signalLights: this.props.signalLights });
 	    }
 	  }]);
 	
-	  return NewItemContainer;
+	  return MemitContainer;
 	}(_react.Component);
 	
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    newItem: state.newItem
+	    signalLights: state.signalLights
 	  };
 	};
 	
-	NewItemContainer.propTypes = {
-	  dispatch: _react.PropTypes.func,
-	  newItem: _react.PropTypes.object
+	MemitContainer.propTypes = {
+	  signalLights: _react.PropTypes.array
 	};
 	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(NewItemContainer);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(MemitContainer);
 
 /***/ },
-/* 502 */
+/* 508 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -33035,50 +32871,52 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var NewItem = function (_Component) {
-	  _inherits(NewItem, _Component);
+	var LightGroupComponent = function (_Component) {
+	  _inherits(LightGroupComponent, _Component);
 	
-	  function NewItem() {
-	    _classCallCheck(this, NewItem);
+	  function LightGroupComponent() {
+	    _classCallCheck(this, LightGroupComponent);
 	
-	    return _possibleConstructorReturn(this, (NewItem.__proto__ || Object.getPrototypeOf(NewItem)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (LightGroupComponent.__proto__ || Object.getPrototypeOf(LightGroupComponent)).apply(this, arguments));
 	  }
 	
-	  _createClass(NewItem, [{
-	    key: "render",
+	  _createClass(LightGroupComponent, [{
+	    key: 'render',
 	    value: function render() {
-	      var _this2 = this;
-	
+	      var style = function style(color) {
+	        return {
+	          backgroundColor: color ? '#4CAF50' : '#008CBA',
+	          border: 'none',
+	          color: 'white',
+	          padding: '15px 32px',
+	          textAlign: 'center',
+	          textDecoration: 'none',
+	          display: 'inline-block',
+	          fontSize: '16px'
+	        };
+	      };
 	      return _react2.default.createElement(
-	        "div",
+	        'div',
 	        null,
-	        _react2.default.createElement("input", {
-	          type: "text",
-	          value: this.props.newItem.name,
-	          onChange: function onChange(event) {
-	            return _this2.props.handleItemInputChanged(event.target.value);
-	          }
-	        }),
-	        _react2.default.createElement(
-	          "button",
-	          { onClick: this.props.handleNewItemAdded.bind(this) },
-	          "Add item"
-	        ),
-	        " \xA0"
+	        this.props.signalLights.map(function (signal, index) {
+	          return _react2.default.createElement(
+	            'button',
+	            { style: style(index % 2 === 0), key: index },
+	            index
+	          );
+	        })
 	      );
 	    }
 	  }]);
 	
-	  return NewItem;
+	  return LightGroupComponent;
 	}(_react.Component);
 	
-	NewItem.propTypes = {
-	  handleNewItemAdded: _react.PropTypes.func,
-	  handleItemInputChanged: _react.PropTypes.func,
-	  newItem: _react.PropTypes.object
+	LightGroupComponent.propTypes = {
+	  signalLights: _react.PropTypes.array
 	};
 	
-	exports.default = NewItem;
+	exports.default = LightGroupComponent;
 
 /***/ }
 /******/ ]);
