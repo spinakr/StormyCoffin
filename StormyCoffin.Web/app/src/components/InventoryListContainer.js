@@ -1,29 +1,21 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import InventoryList from './InventoryList';
 
 class InventoryListContainer extends Component {
-    handleOnInformationElementChanged(id, value) {
-        this.props.dispatch({
-            type: 'INFORMATION_ELEMENT_VALUE_CHANGED',
-            payload: {
-                id: id,
-                value: value
-            }
-        });
-    }
-    render() {
-        return (
-            // <InventoryList policyDetails={this.props.policyDetails} onInformationElementChanged={this.handleOnInformationElementChanged.bind(this)} />
-            <InventoryList />
-        );
-    }
+  render() {
+    return (
+      <InventoryList items={this.props.items} />
+    );
+  }
 }
 
-const mapStateToProps = (state) => {
-    return {
+const mapStateToProps = state => ({
+  items: state.items,
+});
 
-    }
+InventoryListContainer.propTypes = {
+  items: PropTypes.array,
 };
 
 export default connect(mapStateToProps)(InventoryListContainer);
