@@ -3,6 +3,7 @@
 *packages*
 */obj/Debug*
 */bin/*
+*dist*
 
 .vs/
 
