@@ -4,6 +4,7 @@
 */obj/Debug*
 */bin/*
 *dist*
+*App_Data/*
 
 .vs/
 

@@ -12,12 +12,13 @@
   "license": "Unlicensed",
   "dependencies": {
     "babel-polyfill": "^6.16.0",
+    "radium": "^0.18.1",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
-    "webpack-merge": "^0.15.0",
     "redux": "^3.6.0",
+    "webpack-merge": "^0.15.0",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
