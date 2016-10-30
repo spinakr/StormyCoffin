@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import TileGroup from './tileGroupComponent';
-import StartComponent from './startComponent';
+import ControllComponent from './controllComponent';
 
 class MemitContainer extends Component {
   componentDidMount() {
-    this.props.dispatch({ type: 'INITIATE_SEQUENCE' });
+    this.props.dispatch({ type: 'ADD_TILE_TO_SEQUENCE' });
   }
 
   playTile(i) {
@@ -22,11 +22,15 @@ class MemitContainer extends Component {
     this.playTile(0);
   }
 
+  addNewToSequence() {
+    this.props.dispatch({ type: 'ADD_TILE_TO_SEQUENCE' });
+  }
+
   render() {
     return (
       <div>
         <TileGroup signalLights={this.props.signalLights} />
-        <StartComponent playSequence={this.playSequence.bind(this)} />
+        <ControllComponent playSequence={this.playSequence.bind(this)} addNewToSequence={this.addNewToSequence.bind(this)} />
       </div>
     );
   }

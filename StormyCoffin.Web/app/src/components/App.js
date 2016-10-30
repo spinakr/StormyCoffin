@@ -16,7 +16,7 @@ class App extends Component {
         <h1>Stormy Coffin</h1>
         <MemitContainer />
       </div>
-        );
+    );
   }
 }
 

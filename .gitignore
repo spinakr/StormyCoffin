@@ -4,7 +4,7 @@
 */obj/Debug*
 */bin/*
 *dist*
-*App_Data/*
+*nsb_log_*
 
 .vs/
 
