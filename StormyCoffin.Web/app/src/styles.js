@@ -8,6 +8,13 @@ export const blue = {
     display: 'inline-block',
     height: '5vw',
     width: '5vw',
+    ':hover': {
+      backgroundColor: '#289df0',
+    },
+    ':active': {
+      position: 'relative',
+      top: '1px',
+    },
   },
   active: {
     backgroundColor: '#333',
@@ -25,6 +32,13 @@ export const red = {
     display: 'inline-block',
     height: '5vw',
     width: '5vw',
+    ':hover': {
+      backgroundColor: '#e94949',
+    },
+    ':active': {
+      position: 'relative',
+      top: '1px',
+    },
   },
   active: {
     backgroundColor: '#333',
@@ -42,6 +56,13 @@ export const green = {
     display: 'inline-block',
     height: '5vw',
     width: '5vw',
+    ':hover': {
+      backgroundColor: '#0fd719',
+    },
+    ':active': {
+      position: 'relative',
+      top: '1px',
+    },
   },
   active: {
     backgroundColor: '#333',
@@ -59,6 +80,13 @@ export const yellow = {
     display: 'inline-block',
     height: '5vw',
     width: '5vw',
+    ':hover': {
+      backgroundColor: '#ffd166',
+    },
+    ':active': {
+      position: 'relative',
+      top: '1px',
+    },
   },
   active: {
     backgroundColor: '#333',
