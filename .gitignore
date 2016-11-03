@@ -1,6 +1,6 @@
 .DS_STORE
 *node_modules*
-*packages*
+*packages/
 */obj/Debug*
 */bin/*
 *dist*
