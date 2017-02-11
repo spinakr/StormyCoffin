@@ -3,6 +3,7 @@
 *packages/
 */obj/Debug*
 */bin/*
+*/obj/*
 *dist*
 *nsb_log_*
 
