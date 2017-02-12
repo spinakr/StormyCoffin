@@ -71,9 +71,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
@@ -179,6 +177,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\.gitkeep" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -205,6 +206,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
+      <UserProperties app_4dist_4app-bundle_1js_1map__JSONSchema="" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
