@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import TileGroup from './tileGroupComponent';
 import ControllComponent from './controllComponent';
 
+const timeBetweenTiles = 750;
+const timeActive = 375;
 class MemitContainer extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'ADD_TILE_TO_SEQUENCE' });
@@ -13,8 +15,8 @@ class MemitContainer extends Component {
       this.props.dispatch({ type: 'ACTIVATE_TILE', payload: { id: this.props.pattern[i] } });
       setTimeout(() => {
         this.props.dispatch({ type: 'RESET_TILES' });
-        setTimeout(() => { this.playTile(i + 1); }, 750);
-      }, 375);
+        setTimeout(() => { this.playTile(i + 1); }, timeBetweenTiles);
+      }, timeActive);
     }
   }
 
