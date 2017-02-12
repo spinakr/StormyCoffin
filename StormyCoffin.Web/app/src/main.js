@@ -1,6 +1,5 @@
 import 'whatwg-fetch'; // Native fetch polyfill
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import AppContainer from './components/appContainer';
@@ -17,5 +16,5 @@ class StormyCoffin extends Component {
     );
   }
 }
+export default StormyCoffin;
 
-ReactDOM.render(<StormyCoffin />, document.getElementById('stormycoffin-app'));
