@@ -14,27 +14,34 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TILE_TO_SEQUENCE': {
       const randomTile = Math.floor(Math.random() * initialState.signalLights.length);
-      return Object.assign({}, state, {
+      return {
+        ...state,
         pattern: [...state.pattern, randomTile],
-      });
+      };
     }
 
     case 'RESET_TILES':
       return Object.assign({}, state, {
         signalLights: state.signalLights.map((item) => {
-          return Object.assign({}, item, { playing: false });
+          return {
+            ...item,
+            playing: false,
+          };
         }),
       });
 
     case 'ACTIVATE_TILE':
-      return Object.assign({}, state, {
+      return {
+        ...state,
         signalLights: state.signalLights.map((item, index) => {
           if (action.payload.id === index) {
-            return Object.assign({}, item, { playing: true });
+            return {
+              ...item,
+              playing: true };
           }
           return item;
         }),
-      });
+      };
 
     default:
       return state;
