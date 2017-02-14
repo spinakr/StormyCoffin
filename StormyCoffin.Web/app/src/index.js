@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StormyCoffin from './main';
+import AppContainer from './components/appContainer';
 
-ReactDOM.render(<StormyCoffin />, document.getElementById('stormycoffin-app'));
+ReactDOM.render(<AppContainer />, document.getElementById('stormycoffin-app'));
