@@ -1,4 +1,5 @@
 import { blue, red, green, yellow } from '../styles';
+import { GAME_STATE_CHANGED, gameStates } from './gameState';
 
 const initialState = {
   signalLights: [
@@ -56,16 +57,37 @@ export default (state = initialState, action) => {
 export const playSequence = () => (dispatch, getState) => {
   const timeBetweenTiles = 1100;
   const timeActive = 400;
-  const { pattern } = getState();
+  const { pattern } = getState().sequence;
+  let doneTime = 0;
+
+  dispatch({
+    type: GAME_STATE_CHANGED,
+    payload: {
+      newState: gameStates.PLAYING_SEQUENCE,
+    },
+  });
 
   for (let i = 0; i < pattern.length; i += 1) {
+    const activationTime = timeBetweenTiles * i;
+    const deactivationTime = (timeBetweenTiles * i) + timeActive;
+    doneTime += activationTime;
+
     setTimeout(() => {
       dispatch({ type: ACTIVATE_TILE, payload: { id: pattern[i] } });
-    }, timeBetweenTiles * i);
+    }, activationTime);
     setTimeout(() => {
       dispatch({ type: RESET_TILES, payload: { id: pattern[i] } });
-    }, (timeBetweenTiles * i) + timeActive);
+    }, deactivationTime);
   }
+
+  setTimeout(() => {
+    dispatch({
+      type: GAME_STATE_CHANGED,
+      payload: {
+        newState: gameStates.RECALLING_SQUENCE,
+      },
+    });
+  }, doneTime);
 };
 
 export const addNewToSequence = () => {

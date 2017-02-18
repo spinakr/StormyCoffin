@@ -1,14 +1,20 @@
 import 'whatwg-fetch'; // Native fetch polyfill
 import React from 'react';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import sequence from './modules/sequence';
+import gameState from './modules/gameState';
 import MemitContainer from './containers/memitContainer';
 import ScoreContainer from './containers/scoreContainer';
 
-const store = createStore(
+const reducer = combineReducers({
+  gameState,
   sequence,
+});
+
+const store = createStore(
+  reducer,
   applyMiddleware(thunk),
 );
 

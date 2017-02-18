@@ -17,7 +17,7 @@ const ScoreContainer = ({ patternLength }) => {
 };
 
 const mapStateToProps = state => ({
-  patternLength: state.pattern.length,
+  patternLength: state.sequence.pattern.length,
 });
 
 ScoreContainer.propTypes = {

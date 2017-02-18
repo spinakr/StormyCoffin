@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import TileGroup from '../components/tileGroupComponent';
 import ControllComponent from '../components/controllComponent';
 import { playSequence, addNewToSequence } from '../modules/sequence';
+import { gameStates } from '../modules/gameState';
 
 class MemitContainer extends Component {
   render() {
@@ -16,15 +17,20 @@ class MemitContainer extends Component {
     return (
       <div style={style}>
         <TileGroup signalLights={this.props.signalLights} />
-        <ControllComponent playSequence={this.props.playSequence.bind(this)} addNewToSequence={this.props.addNewToSequence.bind(this)} />
+        <ControllComponent
+          playSequence={this.props.playSequence.bind(this)}
+          addNewToSequence={this.props.addNewToSequence.bind(this)}
+          sequencePlaying={this.props.gameState === gameStates.PLAYING_SEQUENCE}
+        />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  signalLights: state.signalLights,
-  pattern: state.pattern,
+  signalLights: state.sequence.signalLights,
+  pattern: state.sequence.pattern,
+  gameState: state.gameState.gameState,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -38,6 +44,7 @@ MemitContainer.propTypes = {
   signalLights: PropTypes.array,
   playSequence: PropTypes.func,
   addNewToSequence: PropTypes.func,
+  gameState: PropTypes.number,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemitContainer);
