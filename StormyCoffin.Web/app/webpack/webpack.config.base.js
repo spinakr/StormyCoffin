@@ -4,7 +4,7 @@ module.exports = {
     entry: ['babel-polyfill', './src/index.js'],
     devtool: 'source-map',
     output: {
-        path: __dirname + "/dist/",
+        path: "dist/",
         filename: 'app-bundle.js',
     },
     module: {
