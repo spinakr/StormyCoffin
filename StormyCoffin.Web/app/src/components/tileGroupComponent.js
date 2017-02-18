@@ -7,7 +7,12 @@ class TileGroup extends Component {
       <div>
         {this.props.signalLights.map((signal, index) => {
           return (
-            <Tile color={signal.color} playing={signal.playing} key={index} />
+            <Tile
+              key={index}
+              color={signal.color}
+              playing={signal.playing}
+              handleOnClick={() => this.props.handleTileClicked(index)}
+            />
           );
         })}
       </div>
@@ -17,6 +22,7 @@ class TileGroup extends Component {
 
 TileGroup.propTypes = {
   signalLights: PropTypes.array,
+  handleTileClicked: PropTypes.func,
 };
 
 export default TileGroup;

@@ -17,10 +17,11 @@ const style = {
 
 class ControllComponent extends Component {
   render() {
+    const { isReadyForNextRound, playSequence, addNewToSequence } = this.props;
     return (
       <div>
-        <button key={1} onClick={this.props.playSequence} style={style} disabled={this.props.sequencePlaying}>Start</button>
-        <button key={2} onClick={this.props.addNewToSequence} style={style} disabled={this.props.sequencePlaying}>Next</button>
+        <button key={1} onClick={playSequence} style={style} disabled={!isReadyForNextRound}>Start</button>
+        <button key={2} onClick={addNewToSequence} style={style} disabled={!isReadyForNextRound}>Next</button>
       </div>
     );
   }
@@ -29,7 +30,7 @@ class ControllComponent extends Component {
 ControllComponent.propTypes = {
   playSequence: PropTypes.func,
   addNewToSequence: PropTypes.func,
-  sequencePlaying: PropTypes.bool,
+  isReadyForNextRound: PropTypes.bool,
 };
 
 export default new Radium(ControllComponent);

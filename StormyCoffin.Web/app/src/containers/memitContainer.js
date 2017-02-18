@@ -4,8 +4,9 @@ import { bindActionCreators } from 'redux';
 
 import TileGroup from '../components/tileGroupComponent';
 import ControllComponent from '../components/controllComponent';
-import { playSequence, addNewToSequence } from '../modules/sequence';
+import { playSequence, addNewToSequence, tileClicked } from '../modules/sequence';
 import { gameStates } from '../modules/gameState';
+
 
 class MemitContainer extends Component {
   render() {
@@ -16,11 +17,14 @@ class MemitContainer extends Component {
 
     return (
       <div style={style}>
-        <TileGroup signalLights={this.props.signalLights} />
+        <TileGroup
+          handleTileClicked={this.props.handleTileClicked.bind(this)}
+          signalLights={this.props.signalLights}
+        />
         <ControllComponent
           playSequence={this.props.playSequence.bind(this)}
           addNewToSequence={this.props.addNewToSequence.bind(this)}
-          sequencePlaying={this.props.gameState === gameStates.PLAYING_SEQUENCE}
+          isReadyForNextRound={this.props.isReadyForNextRound}
         />
       </div>
     );
@@ -30,13 +34,14 @@ class MemitContainer extends Component {
 const mapStateToProps = state => ({
   signalLights: state.sequence.signalLights,
   pattern: state.sequence.pattern,
-  gameState: state.gameState.gameState,
+  isReadyForNextRound: state.gameState.gameState !== gameStates.PLAYING_SEQUENCE,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     playSequence: bindActionCreators(playSequence, dispatch),
     addNewToSequence: bindActionCreators(addNewToSequence, dispatch),
+    handleTileClicked: bindActionCreators(tileClicked, dispatch),
   };
 };
 
@@ -44,7 +49,8 @@ MemitContainer.propTypes = {
   signalLights: PropTypes.array,
   playSequence: PropTypes.func,
   addNewToSequence: PropTypes.func,
-  gameState: PropTypes.number,
+  handleTileClicked: PropTypes.func,
+  isReadyForNextRound: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemitContainer);

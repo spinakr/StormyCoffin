@@ -9,7 +9,7 @@ class Tile extends Component {
       this.props.playing ? this.props.color.active : '',
     ];
     return (
-      <button style={style} />
+      <button style={style} onClick={this.props.handleOnClick} />
     );
   }
 }
@@ -17,6 +17,7 @@ class Tile extends Component {
 Tile.propTypes = {
   color: PropTypes.object,
   playing: PropTypes.bool,
+  handleOnClick: PropTypes.func,
 };
 
 export default new Radium(Tile);

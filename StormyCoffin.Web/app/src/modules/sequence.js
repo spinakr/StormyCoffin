@@ -9,11 +9,13 @@ const initialState = {
     { color: blue, playing: false },
   ],
   pattern: [0],
+  patternRecalled: [],
 };
 
 const ADD_TILE_TO_SEQUENCE = 'stormyCoffin/sequence/ADD_TILE_TO_SEQUENCE';
 const RESET_TILES = 'stormyCoffin/sequence/RESET_TILES';
 const ACTIVATE_TILE = 'stormyCoffin/sequence/ACTIVATE_TILE';
+const TILE_CLICKED = 'stormyCoffin/sequence/TILE_CLICKED';
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -49,6 +51,15 @@ export default (state = initialState, action) => {
         }),
       };
 
+    case TILE_CLICKED: {
+      const newRecalledSequence = [...state.patternRecalled, action.payload.tileIndex];
+      console.log(newRecalledSequence);
+      return {
+        ...state,
+        patternRecalled: newRecalledSequence,
+      };
+    }
+
     default:
       return state;
   }
@@ -58,7 +69,6 @@ export const playSequence = () => (dispatch, getState) => {
   const timeBetweenTiles = 1100;
   const timeActive = 400;
   const { pattern } = getState().sequence;
-  let doneTime = 0;
 
   dispatch({
     type: GAME_STATE_CHANGED,
@@ -69,8 +79,7 @@ export const playSequence = () => (dispatch, getState) => {
 
   for (let i = 0; i < pattern.length; i += 1) {
     const activationTime = timeBetweenTiles * i;
-    const deactivationTime = (timeBetweenTiles * i) + timeActive;
-    doneTime += activationTime;
+    const deactivationTime = activationTime + timeActive;
 
     setTimeout(() => {
       dispatch({ type: ACTIVATE_TILE, payload: { id: pattern[i] } });
@@ -80,16 +89,25 @@ export const playSequence = () => (dispatch, getState) => {
     }, deactivationTime);
   }
 
+  const doneTime = timeBetweenTiles * pattern.length;
   setTimeout(() => {
     dispatch({
       type: GAME_STATE_CHANGED,
-      payload: {
-        newState: gameStates.RECALLING_SQUENCE,
-      },
+      payload: { newState: gameStates.RECALLING_SQUENCE },
     });
   }, doneTime);
 };
 
 export const addNewToSequence = () => {
   return { type: ADD_TILE_TO_SEQUENCE };
+};
+
+export const tileClicked = (tileIndex) => {
+  return {
+    type: TILE_CLICKED,
+    payload: {
+      tileIndex,
+      //TODO: add timeused ??
+    },
+  };
 };
