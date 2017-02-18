@@ -20,6 +20,7 @@ class MemitContainer extends Component {
         <TileGroup
           handleTileClicked={this.props.handleTileClicked.bind(this)}
           signalLights={this.props.signalLights}
+          hasLost={this.props.hasLost}
         />
         <ControllComponent
           playSequence={this.props.playSequence.bind(this)}
@@ -35,6 +36,7 @@ const mapStateToProps = state => ({
   signalLights: state.sequence.signalLights,
   pattern: state.sequence.pattern,
   isReadyForNextRound: state.gameState.gameState !== gameStates.PLAYING_SEQUENCE,
+  hasLost: state.gameState.gameState === gameStates.LOST,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -51,6 +53,7 @@ MemitContainer.propTypes = {
   addNewToSequence: PropTypes.func,
   handleTileClicked: PropTypes.func,
   isReadyForNextRound: PropTypes.bool,
+  hasLost: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemitContainer);

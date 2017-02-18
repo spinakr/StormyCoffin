@@ -53,7 +53,6 @@ export default (state = initialState, action) => {
 
     case TILE_CLICKED: {
       const newRecalledSequence = [...state.patternRecalled, action.payload.tileIndex];
-      console.log(newRecalledSequence);
       return {
         ...state,
         patternRecalled: newRecalledSequence,
@@ -102,12 +101,22 @@ export const addNewToSequence = () => {
   return { type: ADD_TILE_TO_SEQUENCE };
 };
 
-export const tileClicked = (tileIndex) => {
-  return {
+export const tileClicked = tileIndex => (dispatch, getState) => {
+  dispatch({
     type: TILE_CLICKED,
     payload: {
       tileIndex,
       //TODO: add timeused ??
     },
-  };
+  });
+
+  const { pattern, patternRecalled } = getState().sequence;
+
+  for (let i = 0; i < patternRecalled.length; i += 1) {
+    if (patternRecalled[i] !== pattern[i]) {
+      dispatch({
+        type: GAME_STATE_CHANGED,
+        payload: { newState: gameStates.LOST } });
+    }
+  }
 };
