@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MemitContainer from '../containers/memitContainer';
+import ScoreContainer from '../containers/scoreContainer';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
       <div style={style}>
         <h1>Stormy Coffin</h1>
         <MemitContainer />
+        <ScoreContainer />
       </div>
     );
   }
