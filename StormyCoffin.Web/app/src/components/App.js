@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import MemitContainer from './memitContainer';
+import MemitContainer from '../containers/memitContainer';
 
 class App extends Component {
   render() {
     const style = {
       margin: 'auto',
       width: '50%',
-      border: '3px solid green',
-      padding: '50px',
       textAlign: 'center',
     };
 

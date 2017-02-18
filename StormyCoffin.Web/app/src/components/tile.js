@@ -3,8 +3,13 @@ import Radium from 'radium';
 
 class Tile extends Component {
   render() {
+    const style = [
+      { margin: '10px' },
+      this.props.color.base,
+      this.props.playing ? this.props.color.active : '',
+    ];
     return (
-      <button style={[{ margin: '10px' }, this.props.color.base, this.props.playing ? this.props.color.active : '']} />
+      <button style={style} />
     );
   }
 }
