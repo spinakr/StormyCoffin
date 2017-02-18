@@ -5,7 +5,8 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import sequence from './modules/sequence';
 import gameState from './modules/gameState';
-import MemitContainer from './containers/memitContainer';
+import SequenceContainer from './containers/sequenceContainer';
+import ControllerContainer from './containers/controllerContainer';
 import ScoreContainer from './containers/scoreContainer';
 
 const reducer = combineReducers({
@@ -28,7 +29,8 @@ const App = () => {
     <Provider store={store}>
       <div style={style}>
         <h1>Stormy Coffin</h1>
-        <MemitContainer />
+        <SequenceContainer />
+        <ControllerContainer />
         <ScoreContainer />
       </div>
     </Provider>

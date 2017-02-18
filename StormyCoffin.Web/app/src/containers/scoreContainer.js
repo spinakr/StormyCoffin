@@ -6,7 +6,7 @@ const ScoreContainer = ({ patternLength }) => {
   const style = {
     border: '3px solid blue',
     padding: '25px',
-    marginTop: '50px',
+    marginTop: '10px',
   };
 
   return (
