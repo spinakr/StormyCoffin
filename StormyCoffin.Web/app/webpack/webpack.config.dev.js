@@ -9,6 +9,7 @@ module.exports = merge.strategy({
 })(webpackConfigBase, {
   entry: ['react-hot-loader/patch'],
   output: {
+    path: __dirname + "/dist/",
     publicPath: 'http://localhost:5501/app/dist/'
   },
   module: {
