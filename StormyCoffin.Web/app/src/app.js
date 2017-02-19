@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import sequence from './modules/sequence';
 import gameState from './modules/gameState';
+import score from './modules/score';
 import SequenceContainer from './containers/sequenceContainer';
 import ControllerContainer from './containers/controllerContainer';
 import ScoreContainer from './containers/scoreContainer';
@@ -15,6 +16,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducer = combineReducers({
   gameState,
+  score,
   sequence,
 });
 

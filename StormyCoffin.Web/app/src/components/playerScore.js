@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
 
-const playerScore = ({ patternLength }) => {
+const playerScore = ({ score }) => {
   return (
-    <p>PlayerScore: {patternLength} </p>
+    <p>PlayerScore: {score} </p>
   );
 };
 
 playerScore.propTypes = {
-  patternLength: PropTypes.number,
+  score: PropTypes.number,
 };
 
 export default playerScore;

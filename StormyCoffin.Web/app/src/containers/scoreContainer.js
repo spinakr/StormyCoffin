@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import PlayerScore from '../components/playerScore';
 
-const ScoreContainer = ({ patternLength }) => {
+const ScoreContainer = ({ score }) => {
   const style = {
     border: '3px solid blue',
     padding: '25px',
@@ -11,17 +11,17 @@ const ScoreContainer = ({ patternLength }) => {
 
   return (
     <div style={style}>
-      <PlayerScore patternLength={patternLength} />
+      <PlayerScore score={score} />
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  patternLength: state.sequence.pattern.length,
+  score: state.score.score,
 });
 
 ScoreContainer.propTypes = {
-  patternLength: PropTypes.number,
+  score: PropTypes.number,
 };
 
 export default connect(mapStateToProps)(ScoreContainer);

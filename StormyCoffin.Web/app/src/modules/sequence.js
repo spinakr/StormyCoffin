@@ -1,5 +1,6 @@
 import { blue, red, green, yellow } from '../styles';
 import { PLAYING_SEQUENCE, RECALLING_SEQUENCE, PLAYER_LOST, NEW_ROUND_INITIATED } from './gameState';
+import { NEW_SCORE_GAINED } from './score';
 
 const initialState = {
   signalLights: [
@@ -103,7 +104,6 @@ export const tileClicked = tileIndex => (dispatch, getState) => {
     type: TILE_CLICKED,
     payload: {
       tileIndex,
-      //TODO: add timeused ??
     },
   });
 
@@ -123,6 +123,13 @@ export const tileClicked = tileIndex => (dispatch, getState) => {
     });
     dispatch({
       type: ADD_TILE_TO_SEQUENCE,
+    });
+    dispatch({
+      type: NEW_SCORE_GAINED,
+      payload: {
+        sequenceLength: patternRecalled.length,
+        finishedRecalling: new Date().getTime(),
+      },
     });
   }
 };
