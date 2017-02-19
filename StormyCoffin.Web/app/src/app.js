@@ -1,6 +1,6 @@
 import 'whatwg-fetch'; // Native fetch polyfill
 import React from 'react';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import sequence from './modules/sequence';
@@ -9,6 +9,10 @@ import SequenceContainer from './containers/sequenceContainer';
 import ControllerContainer from './containers/controllerContainer';
 import ScoreContainer from './containers/scoreContainer';
 
+/* eslint-disable no-underscore-dangle */
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+/* eslint-enable */
+
 const reducer = combineReducers({
   gameState,
   sequence,
@@ -16,7 +20,7 @@ const reducer = combineReducers({
 
 const store = createStore(
   reducer,
-  applyMiddleware(thunk),
+  composeEnhancers(applyMiddleware(thunk)),
 );
 
 const App = () => {
