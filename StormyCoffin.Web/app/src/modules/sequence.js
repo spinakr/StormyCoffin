@@ -1,5 +1,5 @@
 import { blue, red, green, yellow } from '../styles';
-import { PLAYING_SEQUENCE, RECALLING_SEQUENCE, PLAYER_LOST, NEW_ROUND_INITIATED } from './gameState';
+import { PLAYING_SEQUENCE, RECALLING_SEQUENCE, PLAYER_LOST, NEW_ROUND_INITIATED, gameStates } from './gameState';
 import { NEW_SCORE_GAINED } from './score';
 
 const initialState = {
@@ -100,6 +100,11 @@ export const addNewToSequence = () => {
 };
 
 export const tileClicked = tileIndex => (dispatch, getState) => {
+  const { gameState } = getState().gameState;
+  if (gameState !== gameStates.RECALLING_SEQUENCE) {
+    return;
+  }
+
   dispatch({
     type: TILE_CLICKED,
     payload: {

@@ -17,7 +17,7 @@ const ScoreContainer = ({ score }) => {
 };
 
 const mapStateToProps = state => ({
-  score: state.score.score,
+  score: Math.floor(state.score.score),
 });
 
 ScoreContainer.propTypes = {
