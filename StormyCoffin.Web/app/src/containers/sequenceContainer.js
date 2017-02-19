@@ -30,7 +30,7 @@ const mapStateToProps = state => ({
   signalLights: state.sequence.signalLights,
   pattern: state.sequence.pattern,
   isReadyForNextRound: state.gameState.gameState !== gameStates.PLAYING_SEQUENCE,
-  hasLost: state.gameState.gameState === gameStates.LOST,
+  hasLost: state.gameState.gameState === gameStates.PLAYER_LOST,
 });
 
 const mapDispatchToProps = (dispatch) => {

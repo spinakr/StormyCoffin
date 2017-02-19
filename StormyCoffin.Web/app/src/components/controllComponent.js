@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
 const style = {
@@ -15,22 +15,36 @@ const style = {
   },
 };
 
-class ControllComponent extends Component {
-  render() {
-    const { isReadyForNextRound, playSequence, addNewToSequence } = this.props;
+const ControllComponent = ({ playSequence, isReadyForNextRound, isRecallingSequence, hasLost }) => {
+  if (isReadyForNextRound) {
     return (
       <div>
-        <button key={1} onClick={playSequence} style={style} disabled={!isReadyForNextRound}>Start</button>
-        <button key={2} onClick={addNewToSequence} style={style} disabled={!isReadyForNextRound}>Next</button>
+        <button onClick={playSequence} style={style} >Play!</button>
+      </div>
+    );
+  } else if (isRecallingSequence) {
+    return (
+      <div>
+        <button style={style}>Recall it!</button>
+      </div>
+    );
+  } else if (hasLost) {
+    return (
+      <div>
+        <button style={style}>You lost!</button>
       </div>
     );
   }
-}
+  return (
+    <button style={style}>Memorize it!</button>
+  );
+};
 
 ControllComponent.propTypes = {
   playSequence: PropTypes.func,
-  addNewToSequence: PropTypes.func,
   isReadyForNextRound: PropTypes.bool,
+  isRecallingSequence: PropTypes.bool,
+  hasLost: PropTypes.bool,
 };
 
 export default new Radium(ControllComponent);

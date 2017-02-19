@@ -19,8 +19,9 @@ class ControllerContainer extends Component {
       <div style={style}>
         <ControllComponent
           playSequence={this.props.playSequence.bind(this)}
-          addNewToSequence={this.props.addNewToSequence.bind(this)}
           isReadyForNextRound={this.props.isReadyForNextRound}
+          isRecallingSequence={this.props.isRecallingSequence}
+          hasLost={this.props.hasLost}
         />
       </div>
     );
@@ -28,8 +29,9 @@ class ControllerContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  isReadyForNextRound: state.gameState.gameState !== gameStates.PLAYING_SEQUENCE,
-  hasLost: state.gameState.gameState === gameStates.LOST,
+  isReadyForNextRound: state.gameState.gameState === gameStates.NEW_ROUND_INITIATED,
+  hasLost: state.gameState.gameState === gameStates.PLAYER_LOST,
+  isRecallingSequence: state.gameState.gameState === gameStates.RECALLING_SEQUENCE,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -41,8 +43,9 @@ const mapDispatchToProps = (dispatch) => {
 
 ControllerContainer.propTypes = {
   playSequence: PropTypes.func,
-  addNewToSequence: PropTypes.func,
   isReadyForNextRound: PropTypes.bool,
+  isRecallingSequence: PropTypes.bool,
+  hasLost: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ControllerContainer);

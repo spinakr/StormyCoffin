@@ -1,18 +1,22 @@
 import React, { Component, PropTypes } from 'react';
 import Tile from './tile';
+import { lost } from '../styles';
 
 class TileGroup extends Component {
   render() {
-    if (this.props.hasLost){
-      return (
-        <div>
-          <h1>YOU LOST</h1>
-        </div>
-      );
-    }
     return (
       <div>
         {this.props.signalLights.map((signal, index) => {
+          if (this.props.hasLost) {
+            return (
+              <Tile
+                key={index}
+                color={lost}
+                playing={false}
+                handleOnClick={() => {}}
+              />
+            );
+          }
           return (
             <Tile
               key={index}

@@ -93,3 +93,18 @@ export const yellow = {
     boxShadow: '0 -2px 0 3px #1a1a1a inset, 0 5px 5px rgba(0, 0, 0, 0.17), 0 15px rgba(255, 255, 255, 0.32) inset',
   },
 };
+
+export const lost = {
+  base: {
+    backgroundColor: 'black',
+    border: '3px solid #fff',
+    borderRadius: '100%',
+    boxShadow: '0 -2px 0 3px #gray inset, 0 5px 5px rgba(103, 73, 0, 0.17), 0 15px rgba(255, 255, 255, 0.25) inset',
+    cursor: 'pointer',
+    display: 'inline-block',
+    height: '5vw',
+    width: '5vw',
+  },
+  active: {
+  },
+};

@@ -1,5 +1,5 @@
 import { blue, red, green, yellow } from '../styles';
-import { GAME_STATE_CHANGED, gameStates } from './gameState';
+import { PLAYING_SEQUENCE, RECALLING_SEQUENCE, PLAYER_LOST, NEW_ROUND_INITIATED } from './gameState';
 
 const initialState = {
   signalLights: [
@@ -12,10 +12,10 @@ const initialState = {
   patternRecalled: [],
 };
 
-const ADD_TILE_TO_SEQUENCE = 'stormyCoffin/sequence/ADD_TILE_TO_SEQUENCE';
-const RESET_TILES = 'stormyCoffin/sequence/RESET_TILES';
-const ACTIVATE_TILE = 'stormyCoffin/sequence/ACTIVATE_TILE';
-const TILE_CLICKED = 'stormyCoffin/sequence/TILE_CLICKED';
+const ADD_TILE_TO_SEQUENCE = 'sequence/ADD_TILE_TO_SEQUENCE';
+const RESET_TILES = 'sequence/RESET_TILES';
+const ACTIVATE_TILE = 'sequence/ACTIVATE_TILE';
+const TILE_CLICKED = 'sequence/TILE_CLICKED';
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -24,6 +24,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         pattern: [...state.pattern, randomTile],
+        patternRecalled: [],
       };
     }
 
@@ -70,10 +71,7 @@ export const playSequence = () => (dispatch, getState) => {
   const { pattern } = getState().sequence;
 
   dispatch({
-    type: GAME_STATE_CHANGED,
-    payload: {
-      newState: gameStates.PLAYING_SEQUENCE,
-    },
+    type: PLAYING_SEQUENCE,
   });
 
   for (let i = 0; i < pattern.length; i += 1) {
@@ -91,8 +89,7 @@ export const playSequence = () => (dispatch, getState) => {
   const doneTime = timeBetweenTiles * pattern.length;
   setTimeout(() => {
     dispatch({
-      type: GAME_STATE_CHANGED,
-      payload: { newState: gameStates.RECALLING_SQUENCE },
+      type: RECALLING_SEQUENCE,
     });
   }, doneTime);
 };
@@ -111,12 +108,21 @@ export const tileClicked = tileIndex => (dispatch, getState) => {
   });
 
   const { pattern, patternRecalled } = getState().sequence;
-
   for (let i = 0; i < patternRecalled.length; i += 1) {
     if (patternRecalled[i] !== pattern[i]) {
       dispatch({
-        type: GAME_STATE_CHANGED,
-        payload: { newState: gameStates.LOST } });
+        type: PLAYER_LOST,
+      });
+      return;
     }
+  }
+
+  if (patternRecalled.length === pattern.length) {
+    dispatch({
+      type: NEW_ROUND_INITIATED,
+    });
+    dispatch({
+      type: ADD_TILE_TO_SEQUENCE,
+    });
   }
 };
