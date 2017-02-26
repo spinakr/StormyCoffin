@@ -1,10 +1,11 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
     entry: ['babel-polyfill', './src/index.js'],
     devtool: 'source-map',
     output: {
-        path: __dirname + "/dist/",
+        path: path.resolve("./dist/"),
         filename: 'app-bundle.js',
     },
     module: {
