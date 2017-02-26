@@ -1,3 +1,5 @@
+import { SUBMIT_SCORE_SUCCEED } from './score';
+
 export const gameStates = {
   NEW_ROUND_INITIATED: 1,
   PLAYING_SEQUENCE: 2,
@@ -19,6 +21,7 @@ export const PLAYER_LOST = 'gameState/PLAYER_LOST';
 
 export default (state = { gameState: gameStates.NEW_ROUND_INITIATED }, action) => {
   switch (action.type) {
+    case SUBMIT_SCORE_SUCCEED:
     case NEW_ROUND_INITIATED: {
       return setNewState(state, gameStates.NEW_ROUND_INITIATED);
     }

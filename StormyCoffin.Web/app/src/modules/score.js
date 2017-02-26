@@ -13,7 +13,13 @@ const scoreFunction = (sequenceLength, timeSpentRecalling) => {
   return (sequenceFactor + (timeFactor / 2));
 };
 
-export default (state = { score: 0, totalTimeSpentRecalling: 0 }, action) => {
+const initialState = {
+  score: 0,
+  totalTimeSpentRecalling: 0,
+  isSubmitting: false,
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case RECALLING_SEQUENCE: {
       return {
@@ -33,6 +39,17 @@ export default (state = { score: 0, totalTimeSpentRecalling: 0 }, action) => {
       };
     }
 
+    case SUBMIT_SCORE_STARTED: {
+      return {
+        ...state,
+        isSubmitting: true,
+      };
+    }
+
+    case SUBMIT_SCORE_SUCCEED: {
+      return initialState;
+    }
+
     default:
       return state;
   }
@@ -43,7 +60,6 @@ export const submitScore = score => (dispatch) => {
   submit(1, score).then(() => {
     dispatch({ type: SUBMIT_SCORE_SUCCEED });
   }).catch((errorMessage) => {
-    console.log(errorMessage.message);
     dispatch({ type: SUBMIT_SCORE_FAILED, payload: { errorMessage: errorMessage.message } });
   });
 };

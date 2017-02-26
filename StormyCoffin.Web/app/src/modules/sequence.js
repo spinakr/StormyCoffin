@@ -1,6 +1,6 @@
 import { blue, red, green, yellow } from '../styles';
 import { PLAYING_SEQUENCE, RECALLING_SEQUENCE, PLAYER_LOST, NEW_ROUND_INITIATED, gameStates } from './gameState';
-import { NEW_SCORE_GAINED } from './score';
+import { NEW_SCORE_GAINED, SUBMIT_SCORE_SUCCEED } from './score';
 
 const initialState = {
   signalLights: [
@@ -59,6 +59,10 @@ export default (state = initialState, action) => {
         ...state,
         patternRecalled: newRecalledSequence,
       };
+    }
+
+    case SUBMIT_SCORE_SUCCEED: {
+      return initialState;
     }
 
     default:

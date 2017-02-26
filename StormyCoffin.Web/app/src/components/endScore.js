@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
-const endScore = ({ score, modalActive, handleSubmit }) => {
+const endScore = ({ score, modalActive, handleSubmit, isSubmitting }) => {
   const modal = [
     modalActive ? 'block' : { display: 'none' },
     {
@@ -22,19 +22,20 @@ const endScore = ({ score, modalActive, handleSubmit }) => {
     width: '30%', /* Could be more or less, depending on screen size */
   };
 
-  const submitButton = [{
-    backgroundColor: '#768d87',
-    borderRadius: '5px',
-    border: '1px solid #566963',
-    margin: '20px',
-    fontFamily: 'Arial',
-    fontSize: '15px',
-    fontWeight: 'bold',
-    padding: '11px 23px',
-    ':hover': {
-      backgroundColor: '#6c7c7c',
-    },
-  }];
+  const submitButton = [
+    {
+      backgroundColor: '#768d87',
+      borderRadius: '5px',
+      border: '1px solid #566963',
+      margin: '20px',
+      fontFamily: 'Arial',
+      fontSize: '15px',
+      fontWeight: 'bold',
+      padding: '11px 23px',
+      ':hover': {
+        backgroundColor: '#6c7c7c',
+      },
+    }];
 
   return (
     <div style={modal}>
@@ -43,7 +44,7 @@ const endScore = ({ score, modalActive, handleSubmit }) => {
         <p>Level Reached: {score.gameLevel}</p>
         <p>Time Score: {score.totalTimeSpentRecalling}</p>
 
-        <button style={submitButton} onClick={handleSubmit}>Submit</button>
+        <button style={submitButton} onClick={handleSubmit} disabled={isSubmitting}>Submit</button>
       </div>
     </div>
   );
@@ -53,6 +54,7 @@ endScore.propTypes = {
   score: PropTypes.object,
   modalActive: PropTypes.bool,
   handleSubmit: PropTypes.func,
+  isSubmitting: PropTypes.bool,
 };
 
 export default new Radium(endScore);

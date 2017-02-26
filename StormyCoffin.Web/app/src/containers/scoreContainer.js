@@ -6,7 +6,7 @@ import EndScore from '../components/endScore';
 import { gameStates } from '../modules/gameState';
 import { submitScore } from '../modules/score';
 
-const ScoreContainer = ({ score, endScoreModalActive, handleSubmit }) => {
+const ScoreContainer = ({ score, endScoreModalActive, handleSubmit, isSubmitting }) => {
   const style = {
     border: '3px solid blue',
     padding: '25px',
@@ -23,6 +23,7 @@ const ScoreContainer = ({ score, endScoreModalActive, handleSubmit }) => {
           modalActive={endScoreModalActive}
           score={score}
           handleSubmit={() => handleSubmit(score)}
+          isSubmitting={isSubmitting}
         />
       </div>
     </div>
@@ -36,6 +37,7 @@ const mapStateToProps = state => ({
     gameLevel: state.score.gameLevel,
   },
   endScoreModalActive: state.gameState.gameState === gameStates.PLAYER_LOST,
+  isSubmitting: state.score.isSubmitting,
 });
 
 const mapDispatchToProps = (dispatch) => {
