@@ -4,7 +4,7 @@ module.exports = {
     entry: ['babel-polyfill', './src/index.js'],
     devtool: 'source-map',
     output: {
-        path: "dist/",
+        path: __dirname + "/dist/",
         filename: 'app-bundle.js',
     },
     module: {
@@ -21,7 +21,7 @@ module.exports = {
     },
     plugins: [
         new webpack.ProvidePlugin({
-            'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+            'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
         })
     ],
 };

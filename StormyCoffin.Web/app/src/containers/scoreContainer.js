@@ -1,8 +1,12 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PlayerScore from '../components/playerScore';
+import EndScore from '../components/endScore';
+import { gameStates } from '../modules/gameState';
+import { submitScore } from '../modules/score';
 
-const ScoreContainer = ({ score }) => {
+const ScoreContainer = ({ score, endScoreModalActive, handleSubmit }) => {
   const style = {
     border: '3px solid blue',
     padding: '25px',
@@ -10,18 +14,40 @@ const ScoreContainer = ({ score }) => {
   };
 
   return (
-    <div style={style}>
-      <PlayerScore score={score} />
+    <div>
+      <div style={style}>
+        <PlayerScore score={score.playerScore} />
+      </div>
+      <div>
+        <EndScore
+          modalActive={endScoreModalActive}
+          score={score}
+          handleSubmit={() => handleSubmit(score)}
+        />
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  score: Math.floor(state.score.score),
+  score: {
+    playerScore: Math.floor(state.score.score),
+    totalTimeSpentRecalling: state.score.totalTimeSpentRecalling,
+    gameLevel: state.score.gameLevel,
+  },
+  endScoreModalActive: state.gameState.gameState === gameStates.PLAYER_LOST,
 });
 
-ScoreContainer.propTypes = {
-  score: PropTypes.number,
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleSubmit: bindActionCreators(submitScore, dispatch),
+  };
 };
 
-export default connect(mapStateToProps)(ScoreContainer);
+ScoreContainer.propTypes = {
+  score: PropTypes.object,
+  endScoreModalActive: PropTypes.bool,
+  handleSubmit: PropTypes.func,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScoreContainer);
