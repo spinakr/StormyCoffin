@@ -50,6 +50,7 @@ ScoreContainer.propTypes = {
   score: PropTypes.object,
   endScoreModalActive: PropTypes.bool,
   handleSubmit: PropTypes.func,
+  isSubmitting: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScoreContainer);

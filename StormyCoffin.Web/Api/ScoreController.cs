@@ -15,7 +15,11 @@ namespace StormyCoffin.Web.Api
         [HttpGet]
         public Dictionary<int, string> UserScore()
         {
-            var highScoreList = ScoreRepository.UserScores.ToDictionary(uid => uid.Key, uid => uid.Value.Max());
+            var highScoreList = ScoreRepository.UserScores
+                .ToDictionary(uid => uid.Key, uid => uid.Value.Max())
+                .OrderByDescending(x => x.Value)
+                .Take(5)
+                .ToDictionary(x => x.Key, x => x.Value);
             return highScoreList;
         }
 

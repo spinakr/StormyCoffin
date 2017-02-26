@@ -6,9 +6,11 @@ import thunk from 'redux-thunk';
 import sequence from './modules/sequence';
 import gameState from './modules/gameState';
 import score from './modules/score';
+import highScore from './modules/highScore';
 import SequenceContainer from './containers/sequenceContainer';
 import ControllerContainer from './containers/controllerContainer';
 import ScoreContainer from './containers/scoreContainer';
+import HighScoreContainer from './containers/highScoreContainer';
 
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -18,6 +20,7 @@ const reducer = combineReducers({
   gameState,
   score,
   sequence,
+  highScore,
 });
 
 const store = createStore(
@@ -38,6 +41,7 @@ const App = () => {
         <SequenceContainer />
         <ControllerContainer />
         <ScoreContainer />
+        <HighScoreContainer />
       </div>
     </Provider>
   );

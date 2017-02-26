@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -7,24 +7,22 @@ import { tileClicked } from '../modules/sequence';
 import { gameStates } from '../modules/gameState';
 
 
-class SequenceContainer extends Component {
-  render() {
-    const style = {
-      border: '3px solid green',
-      padding: '50px',
-    };
+const SequenceContainer = ({ handleTileClicked, signalLights, hasLost }) => {
+  const style = {
+    border: '3px solid green',
+    padding: '50px',
+  };
 
-    return (
-      <div style={style}>
-        <TileGroup
-          handleTileClicked={this.props.handleTileClicked.bind(this)}
-          signalLights={this.props.signalLights}
-          hasLost={this.props.hasLost}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div style={style}>
+      <TileGroup
+        handleTileClicked={handleTileClicked.bind(this)}
+        signalLights={signalLights}
+        hasLost={hasLost}
+      />
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   signalLights: state.sequence.signalLights,

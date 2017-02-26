@@ -1,5 +1,5 @@
 import { RECALLING_SEQUENCE } from './gameState';
-import submit from '../services/scoreService';
+import { submit } from '../services/scoreService';
 
 export const NEW_SCORE_GAINED = 'score/NEW_SCORE_GAINED';
 export const SUBMIT_SCORE_STARTED = 'score/SUBMIT_SCORE_STARTED';
@@ -57,7 +57,7 @@ export default (state = initialState, action) => {
 
 export const submitScore = score => (dispatch) => {
   dispatch({ type: SUBMIT_SCORE_STARTED });
-  submit(1, score).then(() => {
+  submit(0, score).then(() => {
     dispatch({ type: SUBMIT_SCORE_SUCCEED });
   }).catch((errorMessage) => {
     dispatch({ type: SUBMIT_SCORE_FAILED, payload: { errorMessage: errorMessage.message } });
