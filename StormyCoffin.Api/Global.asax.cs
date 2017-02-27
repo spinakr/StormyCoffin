@@ -1,14 +1,12 @@
-﻿using Castle.Windsor;
-using Castle.Windsor.Installer;
-using System;
+﻿using System;
 using System.Web.Http;
 using System.Web.Http.Dispatcher;
-using System.Web.Mvc;
-using System.Web.Routing;
+using Castle.Windsor;
+using Castle.Windsor.Installer;
 using Newtonsoft.Json.Serialization;
-using StormyCoffin.Web.Infrastructure;
+using StormyCoffin.Api.Infrastructure;
 
-namespace StormyCoffin.Web
+namespace StormyCoffin.Api
 {
     public class Global : System.Web.HttpApplication
     {
@@ -17,9 +15,6 @@ namespace StormyCoffin.Web
             ConfigureCastleWindsor();
             UseCamelCaseJsonFormatting();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
 
         private void UseCamelCaseJsonFormatting()
@@ -34,10 +29,6 @@ namespace StormyCoffin.Web
         {
             var container = new WindsorContainer();
             container.Install(FromAssembly.This());
-
-            // Create ASP.NET MVC controllers
-            var controllerFactory = new WindsorMvcControllerFactory(container.Kernel);
-            ControllerBuilder.Current.SetControllerFactory(controllerFactory);
 
             // Create ASP.NET Web API controllers
             GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), new WindsorHttpControllerActivator(container.Kernel));

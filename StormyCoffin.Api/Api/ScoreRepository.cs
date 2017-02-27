@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
-namespace StormyCoffin.Web.Api
+namespace StormyCoffin.Api.Api
 {
     public static class ScoreRepository
     {

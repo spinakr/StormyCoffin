@@ -4,7 +4,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
 using Castle.MicroKernel;
 
-namespace StormyCoffin.Web.Infrastructure
+namespace StormyCoffin.Api.Infrastructure
 {
     public class WindsorHttpControllerActivator : IHttpControllerActivator
     {

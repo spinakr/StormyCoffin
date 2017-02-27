@@ -1,8 +1,8 @@
 var webpack = require('webpack');
-var path = require('path');
 var webpackConfigBase = require('./webpack.config.base');
 var babelLoaderHot = require('./loaders/babel.hot');
 var merge = require('webpack-merge');
+var path = require('path');
 
 module.exports = merge.strategy({
   entry: 'prepend',
@@ -11,7 +11,7 @@ module.exports = merge.strategy({
   entry: ['react-hot-loader/patch'],
   output: {
     path: path.resolve("./dist/"),
-    publicPath: 'http://localhost:5501/app/dist/'
+    publicPath: 'http://localhost:5501/dist/'
   },
   module: {
       loaders: [

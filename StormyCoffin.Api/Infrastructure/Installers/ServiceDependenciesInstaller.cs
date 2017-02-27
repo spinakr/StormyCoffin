@@ -2,7 +2,7 @@
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
-namespace StormyCoffin.Web.Infrastructure.Installers
+namespace StormyCoffin.Api.Infrastructure.Installers
 {
     public class ServiceDependenciesInstaller : IWindsorInstaller
     {
