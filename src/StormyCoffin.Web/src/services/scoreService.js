@@ -1,4 +1,4 @@
-const serviceBase = 'http://localhost:5502/score/';
+const serviceBase = '/api/score/';
 
 export const submit = (playerId, score) => {
   return new Promise((resolve, reject) => {

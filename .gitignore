@@ -5,6 +5,7 @@
 **/bin/*
 **/obj/*
 **/octopacked/*
+**/published/*
 *dist*
 *nsb_log_*
 *tools*
