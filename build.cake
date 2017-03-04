@@ -8,7 +8,11 @@ var buildDir = Directory("./src/StormyCoffin.Api/bin");
 var buildWebDir = Directory("./src/StormyCoffin.Web/dist");
 var packDir = Directory("./octopacked");
 
-var packageVersion = "1.0.1.9";
+
+var buildCounter = Argument<int>("BuildCounter", 10);
+var buildingBranch = Argument<string>("BuildingBranch", "master");
+
+var packageVersion = "1.0.1." + buildCounter;
 
 Task("Clean")
     .Does(() =>
