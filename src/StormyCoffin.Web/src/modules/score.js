@@ -57,7 +57,7 @@ export default (state = initialState, action) => {
 
 export const submitScore = score => (dispatch) => {
   dispatch({ type: SUBMIT_SCORE_STARTED });
-  submit(0, score).then(() => {
+  submit('ak', score).then(() => {
     dispatch({ type: SUBMIT_SCORE_SUCCEED });
   }).catch((errorMessage) => {
     dispatch({ type: SUBMIT_SCORE_FAILED, payload: { errorMessage: errorMessage.message } });

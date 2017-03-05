@@ -1,6 +1,7 @@
 #tool nuget:?package=NUnit.ConsoleRunner&version=3.4.0
 #addin "Cake.Npm"
 #tool "nuget:?package=OctopusTools"
+#addin "Cake.FileHelpers"
 
 var target = Argument("target", "Default");
 
@@ -70,13 +71,23 @@ Task("Pack-Api")
         });
 });
 
-Task("Pack-Web")
+Task("Transform-app-version")
     .IsDependentOn("Npm-Build")
     .Does(() => 
 {
-    var fullWeb = new System.IO.FileInfo("./src/Stormycoffin.Web/dist/").FullName;
-
     CopyFile("src/StormyCoffin.Web/index.html", "src/StormyCoffin.Web/dist/index.html");
+    
+    ReplaceTextInFiles("src/StormyCoffin.Web/dist/index.html", "dist/app-bundle.js", "app-bundle.js=" + packageVersion);
+
+    MoveFile("./src/StormyCoffin.Web/dist/app-bundle.js", "./src/StormyCoffin.Web/dist/app-bundle.js=" + packageVersion);
+    
+});
+
+Task("Pack-Web")
+    .IsDependentOn("Transform-app-version")
+    .Does(() => 
+{
+    var fullWeb = new System.IO.FileInfo("./src/Stormycoffin.Web/dist/").FullName;
     
     OctoPack("StormyCoffin.Web" , new OctopusPackSettings
         {

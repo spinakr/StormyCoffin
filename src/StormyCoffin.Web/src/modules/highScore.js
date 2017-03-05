@@ -7,7 +7,7 @@ export const GET_SCORE_FAILED = 'score/GET_SCORE_FAILED';
 
 
 const initialState = {
-  scores: {},
+  scores: [],
   isGettingScore: false,
 };
 

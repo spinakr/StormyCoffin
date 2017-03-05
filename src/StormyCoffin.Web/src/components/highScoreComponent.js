@@ -4,15 +4,15 @@ const highScoreComponent = ({ scores }) => {
   return (
     <div>
       <h1>Highscores: </h1>
-      {Object.keys(scores).map((s) => {
-        return (<p key={s}>{s}: {scores[s]}</p>);
+      {scores.map((s, index) => {
+        return (<p key={index}>{s.userName}: {Math.max(...s.scores)}</p>);
       })}
     </div>
   );
 };
 
 highScoreComponent.propTypes = {
-  scores: PropTypes.object,
+  scores: PropTypes.any,
 };
 
 export default highScoreComponent;

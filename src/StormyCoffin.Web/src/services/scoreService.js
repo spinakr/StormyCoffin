@@ -1,4 +1,7 @@
-const serviceBase = '/api/score/';
+let serviceBase = '/api/score/';
+if(process.env.NODE_ENV == 'development'){
+  serviceBase = 'http://localhost:5502/score/';
+}
 
 export const submit = (playerId, score) => {
   return new Promise((resolve, reject) => {

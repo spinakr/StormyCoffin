@@ -1,14 +1,37 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace StormyCoffin.Api.Api
 {
     public static class ScoreRepository
     {
-        public static Dictionary<int, List<string>> UserScores { get; set; } = new Dictionary<int, List<string>>()
+        public static List<UserSummary> Users { get; set; } = new List<UserSummary>
         {
-            {1, new List<string> { "45", "67" } },
-            {4, new List<string> { "10", "26" } },
-            {9, new List<string> { "90", "10" } },
+            new UserSummary
+            {
+                UserId = Guid.NewGuid(),
+                UserName = "ak",
+                Scores = new List<double> { 20, 30, 40 }
+            },
+            new UserSummary
+            {
+                UserId = Guid.NewGuid(),
+                UserName = "bjarne",
+                Scores = new List<double> { 10, 50, 15 }
+            },
+            new UserSummary
+            {
+                UserId = Guid.NewGuid(),
+                UserName = "spinn",
+                Scores = new List<double> { 5, 12, 11 }
+            }
         };
+    }
+
+    public class UserSummary
+    {
+        public Guid UserId { get; set; }
+        public string UserName { get; set; }
+        public List<double> Scores { get; set; }
     }
 }

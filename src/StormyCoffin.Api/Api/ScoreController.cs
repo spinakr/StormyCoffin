@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -11,25 +12,26 @@ namespace StormyCoffin.Api.Api
     {
         [Route("userScore")]
         [HttpGet]
-        public Dictionary<int, string> UserScore()
+        public List<UserSummary> UserScore()
         {
-            var highScoreList = ScoreRepository.UserScores
-                .ToDictionary(uid => uid.Key, uid => uid.Value.Max())
-                .OrderByDescending(x => x.Value)
-                .Take(5)
-                .ToDictionary(x => x.Key, x => x.Value);
+            var highScoreList = ScoreRepository.Users
+                .OrderByDescending(x => x.Scores.Max())
+                .Take(5).ToList();
             return highScoreList;
         }
 
-        [Route("userScore/{playerId}")]
+        [Route("userScore/{userName}")]
         [HttpPatch]
-        public void UserScore(int playerId, [FromBody] GameScore score)
+        public void UserScore(string userName, [FromBody] GameScore score)
         {
-            if (!ScoreRepository.UserScores.ContainsKey(playerId))
+            if (!ScoreRepository.Users.Exists(u => u.UserName == userName))
             {
-                ScoreRepository.UserScores[playerId] = new List<string>();
+                ScoreRepository.Users.Add(new UserSummary { UserId = Guid.NewGuid(), UserName = userName, Scores = new List<double>()});
             }
-            ScoreRepository.UserScores[playerId].Add(score.PlayerScore.ToString());
+
+            ScoreRepository.Users
+                    .First(u => u.UserName == userName)
+                    .Scores.Add(score.PlayerScore);
         }
     }
 
