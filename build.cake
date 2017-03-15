@@ -77,9 +77,9 @@ Task("Transform-app-version")
 {
     CopyFile("src/StormyCoffin.Web/index.html", "src/StormyCoffin.Web/dist/index.html");
     
-    ReplaceTextInFiles("src/StormyCoffin.Web/dist/index.html", "dist/app-bundle.js", "app-bundle.js" + packageVersion);
+    ReplaceTextInFiles("src/StormyCoffin.Web/dist/index.html", "dist/app-bundle.js", "app-bundle" + packageVersion + ".js");
 
-    MoveFile("./src/StormyCoffin.Web/dist/app-bundle.js", "./src/StormyCoffin.Web/dist/app-bundle.js" + packageVersion);
+    MoveFile("./src/StormyCoffin.Web/dist/app-bundle.js", "./src/StormyCoffin.Web/dist/app-bundle" + packageVersion + ".js");
     
 });
 
