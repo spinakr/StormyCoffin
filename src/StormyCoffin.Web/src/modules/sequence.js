@@ -8,7 +8,7 @@ const initialState = {
     { color: yellow, playing: false },
     { color: blue, playing: false },
   ],
-  pattern: [1],
+  pattern: [],
   patternRecalled: [],
 };
 

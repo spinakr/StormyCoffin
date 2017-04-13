@@ -8,6 +8,10 @@ import { gameStates } from '../modules/gameState';
 
 
 class ControllerContainer extends Component {
+  componentDidMount() {
+    this.props.addNewToSequence();
+  }
+
   render() {
     return (
       <div>
