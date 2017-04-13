@@ -1,27 +1,15 @@
 import React, { PropTypes } from 'react';
 import Tile from './tileComponent';
-import { lost } from '../styles';
 
-const tileGroup = ({ signalLights, handleTileClicked, hasLost }) => {
+const tileGroup = ({ tiles }) => {
   return (
     <div>
-      {signalLights.map((signal, index) => {
-        if (hasLost) {
-          return (
-            <Tile
-              key={index}
-              color={lost}
-              playing={false}
-              handleOnClick={() => {}}
-            />
-          );
-        }
+      {tiles.map((signal, index) => {
         return (
           <Tile
             key={index}
             color={signal.color}
             playing={signal.playing}
-            handleOnClick={() => handleTileClicked(index)}
           />
         );
       })}
@@ -30,9 +18,7 @@ const tileGroup = ({ signalLights, handleTileClicked, hasLost }) => {
 };
 
 tileGroup.propTypes = {
-  signalLights: PropTypes.array,
-  handleTileClicked: PropTypes.func,
-  hasLost: PropTypes.bool,
+  tiles: PropTypes.array,
 };
 
 export default tileGroup;

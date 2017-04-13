@@ -1,50 +1,25 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
+import { playButton } from '../styles';
 
-const style = {
-  backgroundColor: '#768d87',
-  borderRadius: '5px',
-  border: '1px solid #566963',
-  margin: '20px',
-  fontFamily: 'Arial',
-  fontSize: '15px',
-  fontWeight: 'bold',
-  padding: '11px 23px',
-  ':hover': {
-    backgroundColor: '#6c7c7c',
-  },
-};
-
-const ControllComponent = ({ playSequence, isReadyForNextRound, isRecallingSequence, hasLost }) => {
-  if (isReadyForNextRound) {
+const ControllComponent = ({ playSequence, addNewToSequence, isPlayingSequence }) => {
+  if (isPlayingSequence) {
     return (
-      <div>
-        <button onClick={playSequence} style={style} >Play!</button>
-      </div>
-    );
-  } else if (isRecallingSequence) {
-    return (
-      <div>
-        <button style={style}>Recall it!</button>
-      </div>
-    );
-  } else if (hasLost) {
-    return (
-      <div>
-        <button style={style}>You lost!</button>
-      </div>
+      <button onClick={() => {}} style={playButton} >Memorize!</button>
     );
   }
   return (
-    <button style={style}>Memorize it!</button>
+    <div>
+      <button key="1" onClick={playSequence} style={playButton} >Play!</button>
+      <button key="2" onClick={addNewToSequence} style={playButton} >Next!</button>
+    </div>
   );
 };
 
 ControllComponent.propTypes = {
   playSequence: PropTypes.func,
-  isReadyForNextRound: PropTypes.bool,
-  isRecallingSequence: PropTypes.bool,
-  hasLost: PropTypes.bool,
+  isPlayingSequence: PropTypes.bool,
+  addNewToSequence: PropTypes.func,
 };
 
 export default new Radium(ControllComponent);

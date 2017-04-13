@@ -1,27 +1,29 @@
 import { blue, red, green, yellow } from '../styles';
-import { PLAYING_SEQUENCE, RECALLING_SEQUENCE, PLAYER_LOST, NEW_ROUND_INITIATED, gameStates } from './gameState';
-import { NEW_SCORE_GAINED, SUBMIT_SCORE_SUCCEED } from './score';
+import { PLAYING_SEQUENCE, RECALLING_SEQUENCE } from './gameState';
 
 const initialState = {
-  signalLights: [
+  tiles: [
     { color: red, playing: false },
     { color: green, playing: false },
     { color: yellow, playing: false },
     { color: blue, playing: false },
   ],
-  pattern: [0],
+  pattern: [1],
   patternRecalled: [],
 };
 
+
+// Actions
 const ADD_TILE_TO_SEQUENCE = 'sequence/ADD_TILE_TO_SEQUENCE';
 const RESET_TILES = 'sequence/RESET_TILES';
 const ACTIVATE_TILE = 'sequence/ACTIVATE_TILE';
-const TILE_CLICKED = 'sequence/TILE_CLICKED';
 
+
+// Reducer
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TILE_TO_SEQUENCE: {
-      const randomTile = Math.floor(Math.random() * initialState.signalLights.length);
+      const randomTile = Math.floor(Math.random() * initialState.tiles.length);
       return {
         ...state,
         pattern: [...state.pattern, randomTile],
@@ -32,7 +34,7 @@ export default (state = initialState, action) => {
     case ACTIVATE_TILE:
       return {
         ...state,
-        signalLights: state.signalLights.map((item, index) => {
+        tiles: state.tiles.map((item, index) => {
           if (action.payload.id === index) {
             return {
               ...item,
@@ -45,7 +47,7 @@ export default (state = initialState, action) => {
     case RESET_TILES:
       return {
         ...state,
-        signalLights: state.signalLights.map((item) => {
+        tiles: state.tiles.map((item) => {
           return {
             ...item,
             playing: false,
@@ -53,23 +55,13 @@ export default (state = initialState, action) => {
         }),
       };
 
-    case TILE_CLICKED: {
-      const newRecalledSequence = [...state.patternRecalled, action.payload.tileIndex];
-      return {
-        ...state,
-        patternRecalled: newRecalledSequence,
-      };
-    }
-
-    case SUBMIT_SCORE_SUCCEED: {
-      return initialState;
-    }
-
     default:
       return state;
   }
 };
 
+
+// Action creators
 export const playSequence = () => (dispatch, getState) => {
   const timeBetweenTiles = 1100;
   const timeActive = 400;
@@ -101,44 +93,4 @@ export const playSequence = () => (dispatch, getState) => {
 
 export const addNewToSequence = () => {
   return { type: ADD_TILE_TO_SEQUENCE };
-};
-
-export const tileClicked = tileIndex => (dispatch, getState) => {
-  const { gameState } = getState().gameState;
-  if (gameState !== gameStates.RECALLING_SEQUENCE) {
-    return;
-  }
-
-  dispatch({
-    type: TILE_CLICKED,
-    payload: {
-      tileIndex,
-    },
-  });
-
-  const { pattern, patternRecalled } = getState().sequence;
-  for (let i = 0; i < patternRecalled.length; i += 1) {
-    if (patternRecalled[i] !== pattern[i]) {
-      dispatch({
-        type: PLAYER_LOST,
-      });
-      return;
-    }
-  }
-
-  if (patternRecalled.length === pattern.length) {
-    dispatch({
-      type: NEW_ROUND_INITIATED,
-    });
-    dispatch({
-      type: ADD_TILE_TO_SEQUENCE,
-    });
-    dispatch({
-      type: NEW_SCORE_GAINED,
-      payload: {
-        sequenceLength: patternRecalled.length,
-        finishedRecalling: new Date().getTime(),
-      },
-    });
-  }
 };
