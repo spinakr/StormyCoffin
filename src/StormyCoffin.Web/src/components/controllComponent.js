@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import Radium from 'radium';
 import { playButton } from '../styles';
 
 const ControllComponent = ({ playSequence, addNewToSequence, isPlayingSequence }) => {
@@ -22,4 +21,4 @@ ControllComponent.propTypes = {
   addNewToSequence: PropTypes.func,
 };
 
-export default new Radium(ControllComponent);
+export default ControllComponent;
