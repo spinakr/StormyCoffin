@@ -1,5 +1,5 @@
 let serviceBase = '/api/score/';
-if(process.env.NODE_ENV == 'development'){
+if (process.env.NODE_ENV === 'development') {
   serviceBase = 'http://localhost:5502/score/';
 }
 

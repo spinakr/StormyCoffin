@@ -1,40 +1,38 @@
-import React, { Component, PropTypes } from 'react';
-import Tile from './tile';
+import React, { PropTypes } from 'react';
+import Tile from './tileComponent';
 import { lost } from '../styles';
 
-class TileGroup extends Component {
-  render() {
-    return (
-      <div>
-        {this.props.signalLights.map((signal, index) => {
-          if (this.props.hasLost) {
-            return (
-              <Tile
-                key={index}
-                color={lost}
-                playing={false}
-                handleOnClick={() => {}}
-              />
-            );
-          }
+const tileGroup = ({ signalLights, handleTileClicked, hasLost }) => {
+  return (
+    <div>
+      {signalLights.map((signal, index) => {
+        if (hasLost) {
           return (
             <Tile
               key={index}
-              color={signal.color}
-              playing={signal.playing}
-              handleOnClick={() => this.props.handleTileClicked(index)}
+              color={lost}
+              playing={false}
+              handleOnClick={() => {}}
             />
           );
-        })}
-      </div>
-    );
-  }
-}
+        }
+        return (
+          <Tile
+            key={index}
+            color={signal.color}
+            playing={signal.playing}
+            handleOnClick={() => handleTileClicked(index)}
+          />
+        );
+      })}
+    </div>
+  );
+};
 
-TileGroup.propTypes = {
+tileGroup.propTypes = {
   signalLights: PropTypes.array,
   handleTileClicked: PropTypes.func,
   hasLost: PropTypes.bool,
 };
 
-export default TileGroup;
+export default tileGroup;
