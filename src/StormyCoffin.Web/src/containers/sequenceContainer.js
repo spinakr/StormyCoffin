@@ -10,7 +10,7 @@ import { gameStates } from '../modules/gameState';
 const SequenceContainer = ({ handleTileClicked, signalLights, hasLost }) => {
   const style = {
     border: '3px solid green',
-    padding: '50px',
+    padding: '10px',
   };
 
   return (
